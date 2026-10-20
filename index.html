@@ -1,0 +1,209 @@
+﻿<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light" />
+    <title>U Futura | Taller de construcción de escenarios | UNSJ</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script defer src="form-config.js"></script>
+    <script defer src="main.js"></script>
+  </head>
+  <body>
+    <main>
+      <section id="splash" class="splash" aria-label="Pantalla de inicio">
+        <div class="splash__card">
+          <img
+            class="splash__image"
+            src="assets/splash-unsj-horizontal.png"
+            alt="Logo horizontal de la UNSJ"
+            width="5470"
+            height="2084"
+          />
+          <p class="splash__text">SUMATE A PENSAR LA UNIVERSIDAD PÚBLICA QUE QUEREMOS PARA EL FUTURO</p>
+        </div>
+      </section>
+
+      <section id="form-view" class="form-view" hidden>
+        <div class="panel">
+          <header class="hero">
+            <div class="hero__media">
+              <img
+                class="hero__image"
+                src="assets/hero-banner.jpg"
+                alt="Plan Futuro 2050"
+                width="1601"
+                height="401"
+              />
+            </div>
+
+            <div class="hero__body">
+              <p class="hero__kicker">Encuentro Participativo</p>
+              <h1>TALLER DE CONSTRUCCIÓN DE ESCENARIOS</h1>
+              <p class="hero__lede">
+                En este encuentro vamos a construir escenarios para la UNSJ del 2050
+              </p>
+
+              <div class="hero__meta" aria-label="Detalles del evento">
+                <p class="hero__meta-item">
+                  <span class="eyebrow">Fecha</span>
+                  <span>5 de noviembre de 2026</span>
+                </p>
+                <p class="hero__meta-item">
+                  <span class="eyebrow">Horario</span>
+                  <span>17 hs.</span>
+                </p>
+                <p class="hero__meta-item hero__meta-item--full">
+                  <span class="eyebrow">Lugar</span>
+                  <span>Hall Rectorado</span>
+                </p>
+              </div>
+              <p class="hero__lede hero__registration">
+                Inscripción: del 20 de octubre al 4 de noviembre de 2026.
+                Todos los datos son obligatorios.
+              </p>
+            </div>
+          </header>
+
+          <div
+            id="result"
+            class="result"
+            role="status"
+            aria-live="polite"
+            hidden
+          ></div>
+
+          <form id="enrollment-form" novalidate>
+            <div class="field">
+              <label for="firstNames">Nombre</label>
+              <input
+                id="firstNames"
+                name="firstNames"
+                type="text"
+                autocomplete="given-name"
+                required
+                maxlength="120"
+              />
+              <p class="field-error" id="firstNames-error"></p>
+            </div>
+
+            <div class="field">
+              <label for="lastNames">Apellido</label>
+              <input
+                id="lastNames"
+                name="lastNames"
+                type="text"
+                autocomplete="family-name"
+                required
+                maxlength="120"
+              />
+              <p class="field-error" id="lastNames-error"></p>
+            </div>
+
+            <div class="field">
+              <label for="dni">DNI</label>
+              <input
+                id="dni"
+                name="dni"
+                type="text"
+                inputmode="numeric"
+                autocomplete="off"
+                required
+                minlength="7"
+                maxlength="8"
+                pattern="[0-9]{7,8}"
+              />
+              <p class="field-error" id="dni-error"></p>
+            </div>
+
+            <div class="field">
+              <label for="gender">Género</label>
+              <select id="gender" name="gender" required>
+                <option value="" disabled selected>
+                  Seleccioná una opción
+                </option>
+                <option value="Masculino">Masculino</option>
+                <option value="Femenino">Femenino</option>
+                <option value="No binario">No binario</option>
+                <option value="Otro">Otro</option>
+              </select>
+              <p class="field-error" id="gender-error"></p>
+            </div>
+
+            <div class="field">
+              <label for="email">Email</label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                autocomplete="email"
+                required
+                maxlength="160"
+              />
+              <p class="field-error" id="email-error"></p>
+            </div>
+
+            <div class="field">
+              <label for="phone">Teléfono</label>
+              <input
+                id="phone"
+                name="phone"
+                type="tel"
+                inputmode="numeric"
+                autocomplete="tel"
+                required
+                maxlength="10"
+                pattern="[0-9]{1,10}"
+                placeholder="Ej: 2641234567"
+              />
+              <p class="field-error" id="phone-error"></p>
+            </div>
+
+            <div class="field field--full">
+              <label for="educationalInstitution">Unidad académica/Institución</label>
+              <input
+                id="educationalInstitution"
+                name="educationalInstitution"
+                type="text"
+                autocomplete="organization"
+                required
+                maxlength="180"
+                placeholder="Escribí tu unidad académica o institución"
+              />
+              <p class="field-error" id="educationalInstitution-error"></p>
+            </div>
+
+            <div class="hp-field" aria-hidden="true">
+              <label for="website">Sitio web</label>
+              <input
+                id="website"
+                name="website"
+                type="text"
+                tabindex="-1"
+                autocomplete="off"
+              />
+            </div>
+
+            <button id="submit-button" type="submit">Enviar inscripción</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <dialog id="success-dialog" class="dialog">
+      <div class="dialog__content">
+        <h2>Inscripción recibida</h2>
+        <p>Tu inscripción fue recibida correctamente.</p>
+        <button type="button" id="success-dialog-close">Aceptar</button>
+      </div>
+    </dialog>
+
+    <dialog id="duplicate-dialog" class="dialog">
+      <div class="dialog__content">
+        <h2>DNI ya registrado</h2>
+        <p>Ya existe una inscripción registrada con ese DNI.</p>
+        <button type="button" id="duplicate-dialog-close">Aceptar</button>
+      </div>
+    </dialog>
+  </body>
+</html>
